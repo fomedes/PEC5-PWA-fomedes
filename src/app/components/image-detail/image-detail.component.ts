@@ -5,8 +5,8 @@ import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
   selector: 'app-image',
-  templateUrl: './image.component.html',
-  styleUrls: ['./image.component.css'],
+  templateUrl: './image-detail.component.html',
+  styleUrls: ['./image-detail.component.css'],
 })
 export class ImageComponent implements OnInit {
   image!: Image;
