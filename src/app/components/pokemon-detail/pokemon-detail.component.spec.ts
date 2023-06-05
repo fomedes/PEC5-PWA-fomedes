@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ImageComponent } from './image-detail.component';
+import { ImageComponent } from './pokemon-detail.component';
 
 describe('ImageComponent', () => {
   let component: ImageComponent;

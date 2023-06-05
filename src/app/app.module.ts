@@ -5,11 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ImageComponent } from './components/image-detail/image-detail.component';
-import { ImagesComponent } from './components/image-list/images.component';
+import { PokemonComponent } from './components/pokemon-detail/pokemon-detail.component';
+import { PokemonsComponent } from './components/pokemon-list/pokemon-list.component';
 
 @NgModule({
-  declarations: [AppComponent, ImagesComponent, ImageComponent],
+  declarations: [AppComponent, PokemonsComponent, PokemonComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
