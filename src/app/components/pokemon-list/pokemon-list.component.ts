@@ -9,6 +9,7 @@ import { PokemonsService } from 'src/app/services/pokemons.service';
 })
 export class PokemonsComponent implements OnInit {
   pokemons!: PokemonList;
+  displayMode!: string;
 
   pokemonData = [
     {
@@ -177,6 +178,7 @@ export class PokemonsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPokemonList();
+    this.displayMode = 'table';
   }
 
   getPokemonList() {

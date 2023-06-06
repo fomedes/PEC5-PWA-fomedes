@@ -11,40 +11,50 @@
           <img class="rounded" src="{{pokemon['sprites']['other']['official-artwork']['front_default']}}" alt="" style="max-width: 80%; height: auto;">
         </div>
       </div>
-      <div class="text-center mt-3">
-        <button class="btn btn-primary" (click)="showDetails = !showDetails">Show all details</button>
-      </div>
-      <div class="col-md-12 text-center mt-3">
-        <div class="d-inline-block">
-          <table *ngIf="showDetails" class="table mt-3">
-            <tr>
-              <th colspan="2" class="text-center">Bio</th>
-            </tr>    
-            <tr>
-              <th>Base Experience</th>
-              <td>{{pokemon.base_experience}}</td>
-            </tr>
-            <tr>
-              <th>Height</th>
-              <td>{{pokemon.height}}</td>
-            </tr>
-            <tr>
-              <th>Weight</th>
-              <td>{{pokemon.weight}}</td>
-            </tr>
-            <tr>
-              <th>Types</th>
-              <td>{{getFormattedTypes(pokemon.types)}}</td>
-            </tr>
-            <tr>
-              <th colspan="2" class="text-center">Base Stats</th>
-            </tr>    
-            <tr *ngFor="let stat of pokemon.stats">
-              <th>{{stat.stat.name | titlecase}}</th>
-              <td>{{stat.base_stat}}</td>
-            </tr>
-          </table>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="d-flex justify-content-center">
+            <h2 class="m-0">Show all details</h2>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="col-md-12 text-center mt-3">
+          <div class="d-inline-block">
+            <table class="table mt-3">
+              <tr>
+                <th colspan="2" class="text-center">Bio</th>
+              </tr>    
+              <tr>
+                <th>Base Experience</th>
+                <td>{{pokemon.base_experience}}</td>
+              </tr>
+              <tr>
+                <th>Height</th>
+                <td>{{pokemon.height}}</td>
+              </tr>
+              <tr>
+                <th>Weight</th>
+                <td>{{pokemon.weight}}</td>
+              </tr>
+              <tr>
+                <th>Types</th>
+                <td>{{getFormattedTypes(pokemon.types)}}</td>
+              </tr>
+              <tr>
+                <td>
+                  <br/>
+                </td>
+              </tr>
+              <tr>
+                <th colspan="2" class="text-center">Base Stats</th>
+              </tr>    
+              <tr *ngFor="let stat of pokemon.stats">
+                <th>{{stat.stat.name | titlecase}}</th>
+                <td>{{stat.base_stat}}</td>
+              </tr>
+            </table>
+          </div>
         </div>
-      </div>
+  
+      </mat-expansion-panel>    
   </div>
 </div>

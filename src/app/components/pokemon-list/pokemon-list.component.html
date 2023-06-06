@@ -4,10 +4,36 @@
 
 <div *ngIf="pokemons.results.length > 0" class="container">
   <h1>List of Pokemons</h1>
-  <ul class="list-group">
-    <a *ngFor="let pokemon of pokemons.results" [routerLink]="['/pokemon', pokemon.name]" class="list-group-item list-group-item-action animate__animated animate__bounce animate__fadeIn">
-      <img  style="width:10%; height: 10%;" *ngIf="getSpriteUrl(pokemon.name)" [src]="getSpriteUrl(pokemon.name)" alt="Pokemon Sprite" />
-      {{pokemon.name | titlecase }}
-    </a>
-  </ul>
+  <div class="mb-2 d-flex justify-content-end">
+    <button class="me-2 pt-2 border-0" (click)="displayMode = 'table'">
+      <mat-icon class="m-0 p-0 ">view_list</mat-icon>
+    </button>
+    <button class="me-3 pt-2 border-0" (click)="displayMode = 'cards'">
+      <mat-icon class="m-0">view_module</mat-icon>
+    </button>
+  </div>
+  
+  <div  *ngIf="displayMode === 'table'" class="container">
+    <ul class="list-group">
+      <a *ngFor="let pokemon of pokemons.results" [routerLink]="['/pokemon', pokemon.name]" class="list-group-item list-group-item-action animate__animated animate__bounce animate__fadeIn">
+        <img  style="width:10%; height: 10%;" *ngIf="getSpriteUrl(pokemon.name)" [src]="getSpriteUrl(pokemon.name)" alt="Pokemon Sprite" />
+        {{pokemon.name | titlecase }}
+      </a>
+    </ul>
+  </div>
+
+  <div *ngIf="displayMode === 'cards'" class="container">
+    <mat-card>
+      <mat-card-content>
+        <mat-grid-list cols="4" rowHeight="300px">
+          <mat-grid-tile *ngFor="let pokemon of pokemons.results">
+            <mat-card>
+              <img *ngIf="getSpriteUrl(pokemon.name)" [src]="getSpriteUrl(pokemon.name)" alt="Pokemon Sprite" />
+              <mat-card-title>{{pokemon.name | titlecase }}</mat-card-title>
+            </mat-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
