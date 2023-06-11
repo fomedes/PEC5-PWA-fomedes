@@ -14,7 +14,7 @@
   </div>
   
   <div  *ngIf="displayMode === 'table'" class="container">
-    <mat-grid-list cols="1" rowHeight="150px" gutterSize="0" >
+    <mat-grid-list cols="1" rowHeight="18vh">
       <mat-grid-tile *ngFor="let pokemon of pokemons.results">
         <a [routerLink]="['/pokemon', pokemon.name]" class="list-group-item list-group-item-action animate__animated animate__bounce animate__fadeIn">
           <img style="width: 10%;" *ngIf="getSpriteUrl(pokemon.name)" [src]="getSpriteUrl(pokemon.name)" alt="Pokemon Sprite" />
