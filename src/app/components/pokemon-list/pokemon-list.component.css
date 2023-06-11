@@ -46,3 +46,9 @@
 .card-title {
   font-weight: bold;
 }
+
+.list-group-item {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
