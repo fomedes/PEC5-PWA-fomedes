@@ -1,16 +1,211 @@
-import { Component, OnInit } from '@angular/core';
-import { PokemonList } from 'src/app/models/pokemonList.interface';
-import { PokemonsService } from 'src/app/services/pokemons.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { PokemonDetail } from 'src/app/models/pokemonDetail.interface';
 
 @Component({
-  selector: 'app-pokemons',
-  templateUrl: './pokemon-list.component.html',
-  styleUrls: ['./pokemon-list.component.css'],
+  selector: 'app-cards',
+  templateUrl: './cards.component.html',
+  styleUrls: ['./cards.component.css'],
 })
-export class PokemonsComponent implements OnInit {
-  pokemons!: PokemonList;
-  displayMode!: string;
-  isLoading: boolean = true;
+export class CardsComponent implements OnInit {
+  @Input() item: PokemonDetail = {
+    abilities: [],
+    base_experience: 0,
+    forms: [],
+    game_indices: [],
+    height: 0,
+    held_items: [],
+    id: 0,
+    is_default: false,
+    location_area_encounters: '',
+    moves: [],
+    name: '',
+    order: 0,
+    past_types: [],
+    species: { name: '', url: '' },
+    sprites: {
+      back_default: '',
+      back_female: null,
+      back_shiny: '',
+      back_shiny_female: null,
+      front_default: '',
+      front_female: null,
+      front_shiny: '',
+      front_shiny_female: null,
+      other: {
+        dream_world: { front_default: '', front_female: null },
+        home: {
+          front_default: '',
+          front_female: null,
+          front_shiny: '',
+          front_shiny_female: null,
+        },
+        'official-artwork': { front_default: '', front_shiny: '' },
+      },
+      versions: {
+        'generation-i': {
+          'red-blue': {
+            back_default: '',
+            back_gray: '',
+            back_transparent: '',
+            front_default: '',
+            front_gray: '',
+            front_transparent: '',
+          },
+          yellow: {
+            back_default: '',
+            back_gray: '',
+            back_transparent: '',
+            front_default: '',
+            front_gray: '',
+            front_transparent: '',
+          },
+        },
+        'generation-ii': {
+          crystal: {
+            back_default: '',
+            back_shiny: '',
+            back_shiny_transparent: '',
+            back_transparent: '',
+            front_default: '',
+            front_shiny: '',
+            front_shiny_transparent: '',
+            front_transparent: '',
+          },
+          gold: {
+            back_default: '',
+            back_shiny: '',
+            front_default: '',
+            front_shiny: '',
+            front_transparent: '',
+          },
+          silver: {
+            back_default: '',
+            back_shiny: '',
+            front_default: '',
+            front_shiny: '',
+            front_transparent: '',
+          },
+        },
+        'generation-iii': {
+          emerald: {
+            front_default: '',
+            front_shiny: '',
+          },
+          'firered-leafgreen': {
+            back_default: '',
+            back_shiny: '',
+            front_default: '',
+            front_shiny: '',
+          },
+          'ruby-sapphire': {
+            back_default: '',
+            back_shiny: '',
+            front_default: '',
+            front_shiny: '',
+          },
+        },
+        'generation-iv': {
+          'diamond-pearl': {
+            back_default: '',
+            back_female: null,
+            back_shiny: '',
+            back_shiny_female: null,
+            front_default: '',
+            front_female: null,
+            front_shiny: '',
+            front_shiny_female: null,
+          },
+          'heartgold-soulsilver': {
+            back_default: '',
+            back_female: null,
+            back_shiny: '',
+            back_shiny_female: null,
+            front_default: '',
+            front_female: null,
+            front_shiny: '',
+            front_shiny_female: null,
+          },
+          platinum: {
+            back_default: '',
+            back_female: null,
+            back_shiny: '',
+            back_shiny_female: null,
+            front_default: '',
+            front_female: null,
+            front_shiny: '',
+            front_shiny_female: null,
+          },
+        },
+        'generation-v': {
+          'black-white': {
+            animated: {
+              back_default: '',
+              back_female: null,
+              back_shiny: '',
+              back_shiny_female: null,
+              front_default: '',
+              front_female: null,
+              front_shiny: '',
+              front_shiny_female: null,
+            },
+            back_default: '',
+            back_female: null,
+            back_shiny: '',
+            back_shiny_female: null,
+            front_default: '',
+            front_female: null,
+            front_shiny: '',
+            front_shiny_female: null,
+          },
+        },
+        'generation-vi': {
+          'omegaruby-alphasapphire': {
+            front_default: '',
+            front_female: null,
+            front_shiny: '',
+            front_shiny_female: null,
+          },
+          'x-y': {
+            front_default: '',
+            front_female: null,
+            front_shiny: '',
+            front_shiny_female: null,
+          },
+        },
+        'generation-vii': {
+          icons: {
+            front_default: '',
+            front_female: null,
+          },
+          'ultra-sun-ultra-moon': {
+            front_default: '',
+            front_female: null,
+            front_shiny: '',
+            front_shiny_female: null,
+          },
+        },
+        'generation-viii': {
+          icons: {
+            front_default: '',
+            front_female: null,
+          },
+        },
+      },
+    },
+    stats: [],
+    types: [],
+    weight: 0,
+  };
+
+  @Input() itemData = {
+    id: '',
+    name: '',
+    spriteUrl: '',
+    officialUrl: '',
+  };
+
+  @Input() spriteUrl: string | undefined;
+  @Input() pokemonName!: string;
 
   pokemonData = [
     {
@@ -175,24 +370,12 @@ export class PokemonsComponent implements OnInit {
     },
   ];
 
-  constructor(private pokemonsService: PokemonsService) {}
-
-  ngOnInit(): void {
-    this.getPokemonList();
-    this.displayMode = 'table';
-  }
-
-  getPokemonList() {
-    this.pokemonsService.getAllPokemons().subscribe((pokemons) => {
-      this.pokemons = pokemons;
-      this.isLoading = false;
-    });
-  }
-
   getSpriteUrl(pokemonName: string): string | undefined {
     const sprite = this.pokemonData.find(
       (sprite) => sprite.name === pokemonName
     );
     return sprite ? sprite.spriteUrl : undefined;
   }
+
+  ngOnInit(): void {}
 }

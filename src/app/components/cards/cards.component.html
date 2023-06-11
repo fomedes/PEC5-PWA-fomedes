@@ -1,0 +1,8 @@
+<mat-card class="card">
+  <mat-card-content>
+    <mat-card>
+      <img *ngIf="spriteUrl" [src]="spriteUrl" alt="Pokemon Sprite" />
+      <mat-card-title>{{ pokemonName | titlecase }}</mat-card-title>
+    </mat-card>
+  </mat-card-content>
+</mat-card> 
