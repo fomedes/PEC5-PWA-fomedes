@@ -5,10 +5,10 @@
 <div *ngIf="!isLoading && pokemons.results.length > 0" class="container">
   <h1>List of Pokemons</h1>
     <div class="mb-2 d-flex justify-content-end">
-    <button class="me-2 pt-2 border-0" (click)="displayMode = 'table'">
+    <button id="table display" class="me-2 pt-2 border-0" (click)="displayMode = 'table'">
       <mat-icon class="m-0 p-0 ">view_list</mat-icon>
     </button>
-    <button class="me-3 pt-2 border-0" (click)="displayMode = 'cards'">
+    <button id="card display" class="me-3 pt-2 border-0" (click)="displayMode = 'cards'">
       <mat-icon class="m-0">view_module</mat-icon>
     </button>
   </div>
